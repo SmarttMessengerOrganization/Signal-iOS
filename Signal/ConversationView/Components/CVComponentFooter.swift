@@ -421,6 +421,14 @@ public class CVComponentFooter: CVComponentBase, CVComponent {
                 break
             }
 
+            // [Smartt: comm-window] Held by the recipient's communication window: a cloud until it's delivered.
+            if messageStatus == .sent, SmarttHeldMessages.shared.isHeld(outgoingMessage, tx: transaction) {
+                statusIndicator = StatusIndicator(imageName: "smartt_message_status_held",
+                                                  imageSize: .square(12),
+                                                  isAnimated: false)
+            }
+            // [/Smartt]
+
             if outgoingMessage.wasRemotelyDeleted {
                 statusIndicator = nil
             }

@@ -1448,6 +1448,7 @@ public class MessageSender {
                     auth: $0
                 )
             }
+            await SmarttHeldMessages.shared.recordIfHeld(message: message, thread: messageSend.thread, response: result.response) // [Smartt: comm-window]
             return await messageSendDidSucceed(
                 messageSend,
                 deviceMessages: deviceMessages,

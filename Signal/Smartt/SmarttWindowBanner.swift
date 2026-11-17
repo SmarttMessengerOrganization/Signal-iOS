@@ -2,8 +2,8 @@ import SignalServiceKit
 import SignalUI
 
 /// The banner a sender sees in a one-to-one chat while the recipient's communication window is
-/// closed: Signal's chat banner with one line, and the recipient's expectations in an action sheet
-/// on tap. The iOS counterpart of Android's `SmarttWindowBannerManager`.
+/// closed: a one-line banner like Signal's, and the recipient's expectations in an action sheet on
+/// tap. The iOS counterpart of Android's `SmarttWindowBannerManager`.
 @MainActor
 enum SmarttWindowBanner {
     private struct Entry {
@@ -60,9 +60,19 @@ enum SmarttWindowBanner {
             comment: "Banner in a one-to-one chat while the recipient's communication window is closed. Embeds {{contact name}}, {{start time}} and {{end time}}."
         )
         let title = String(format: titleFormat, name, timeText(metadata.windowStartMinutes), timeText(metadata.windowEndMinutes))
-        return ConversationViewController.createBanner(title: title, bannerColor: .ows_accentBlue) {
-            showExpectations(metadata)
-        }
+        // Styled like Signal's `ConversationViewController.createBanner`, without its close icon.
+        let banner = GestureView()
+        banner.backgroundColor = .ows_accentBlue
+        banner.addTap { showExpectations(metadata) }
+        let label = UILabel()
+        label.text = title
+        label.font = UIFont.dynamicTypeSubheadlineClamped.semibold()
+        label.textColor = .white
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        banner.addSubview(label)
+        label.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 15))
+        return banner
     }
 
     private static func showExpectations(_ metadata: SmarttWindowMetadata) {

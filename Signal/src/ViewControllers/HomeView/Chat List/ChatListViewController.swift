@@ -612,7 +612,7 @@ public class ChatListViewController: OWSViewController, HomeTabViewController {
             "CAMERA_BUTTON_HINT",
             comment: "Accessibility hint describing what you can do with the camera button"
         )
-        rightBarButtonItems.append(camera)
+        rightBarButtonItems.append(SmarttWindowsViewController.chatListButton(presentingFrom: self)) // [Smartt: comm-window] instead of the camera
 
         if let proxyButton = viewState.proxyButtonCreator.buildButton() {
             rightBarButtonItems.append(proxyButton)

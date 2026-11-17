@@ -1,3 +1,24 @@
+/* A communication window's closed period applies every day. */
+"SMARTT_WINDOWS_EVERY_DAY" = "Every day";
+
+/* Row at the end of the communication windows list that starts creating a new window. */
+"SMARTT_WINDOWS_NEW" = "New communication window";
+
+/* A communication window's latest change hasn't reached the server yet. */
+"SMARTT_WINDOWS_NOT_SYNCED" = "Not synced yet";
+
+/* A communication window is switched off. */
+"SMARTT_WINDOWS_OFF" = "Off";
+
+/* A communication window is switched on. */
+"SMARTT_WINDOWS_ON" = "On";
+
+/* When a communication window's closed period runs. Embeds {{start time}} and {{end time}}. */
+"SMARTT_WINDOWS_TIME_RANGE_FORMAT" = "%1$@ until %2$@";
+
+/* Title of the list of the user's communication windows, and label of the chat list button that opens it. */
+"SMARTT_WINDOWS_TITLE" = "Communication windows";
+
 /* Check frequency in the window banner's details. */
 "SMARTT_WINDOW_BANNER_CHECK_EVERY_FEW_HOURS" = "every few hours";
 

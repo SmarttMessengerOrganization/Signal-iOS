@@ -29,7 +29,7 @@ public struct SmarttCommunicationWindowStore {
         return loadRecord(windowId: windowId, tx: tx)?.window
     }
 
-    func windowsNeedingSync(tx: DBReadTransaction) -> [SmarttCommunicationWindow] {
+    public func windowsNeedingSync(tx: DBReadTransaction) -> [SmarttCommunicationWindow] {
         return loadRecords(tx: tx).filter(\.needsSync).map(\.window)
     }
 

@@ -108,7 +108,7 @@ enum SmarttWindowBanner {
     }
 
     /// `minutes` since midnight, in the phone's time format.
-    private static func timeText(_ minutes: Int) -> String {
+    static func timeText(_ minutes: Int) -> String {
         guard let date = Calendar.current.date(from: DateComponents(hour: minutes / 60, minute: minutes % 60)) else {
             return ""
         }

@@ -787,6 +787,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
+        SmarttCommunicationWindows.shared.syncAll() // [Smartt: comm-window]
+
         DebugLogger.shared.postLaunchLogCleanup(appContext: appContext)
         AppVersionImpl.shared.mainAppLaunchDidComplete()
 

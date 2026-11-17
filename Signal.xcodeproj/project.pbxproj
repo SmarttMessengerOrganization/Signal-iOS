@@ -742,6 +742,10 @@
 		50F77AA02AAA7B8A00FB70C5 /* ProfileWhitelistMerger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F77A9F2AAA7B8A00FB70C5 /* ProfileWhitelistMerger.swift */; };
 		50F86FC42AFEFEC20045F58B /* TimeGatedBatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F86FC32AFEFEC20045F58B /* TimeGatedBatch.swift */; };
 		50F946102AD768AF002EF293 /* MockIdentityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F9460F2AD768AF002EF293 /* MockIdentityManager.swift */; };
+		534D52540000000000000102 /* SmarttCommunicationWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534D52540000000000000101 /* SmarttCommunicationWindow.swift */; };
+		534D52540000000000000202 /* SmarttCommunicationWindowAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534D52540000000000000201 /* SmarttCommunicationWindowAPI.swift */; };
+		534D52540000000000000302 /* SmarttCommunicationWindows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534D52540000000000000301 /* SmarttCommunicationWindows.swift */; };
+		534D52540000000000000402 /* SmarttCommunicationWindowStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534D52540000000000000401 /* SmarttCommunicationWindowStore.swift */; };
 		5AA002E62CA24566002D1CC2 /* SessionStoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA002E52CA2455F002D1CC2 /* SessionStoreTest.swift */; };
 		616577F953D77424E32C7438 /* Pods_SignalUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 675486AB8F0612FF2C717BAE /* Pods_SignalUI.framework */; };
 		6600BB182BA3A04C0005A035 /* LinkPreviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6600BB172BA3A04C0005A035 /* LinkPreviewManager.swift */; };
@@ -4677,6 +4681,10 @@
 		50F86FC32AFEFEC20045F58B /* TimeGatedBatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeGatedBatch.swift; sourceTree = "<group>"; };
 		50F9460F2AD768AF002EF293 /* MockIdentityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockIdentityManager.swift; sourceTree = "<group>"; };
 		50F96F3A28ECBC3200541EED /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ms; path = translations/ms.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		534D52540000000000000101 /* SmarttCommunicationWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarttCommunicationWindow.swift; sourceTree = "<group>"; };
+		534D52540000000000000201 /* SmarttCommunicationWindowAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarttCommunicationWindowAPI.swift; sourceTree = "<group>"; };
+		534D52540000000000000301 /* SmarttCommunicationWindows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarttCommunicationWindows.swift; sourceTree = "<group>"; };
+		534D52540000000000000401 /* SmarttCommunicationWindowStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarttCommunicationWindowStore.swift; sourceTree = "<group>"; };
 		538291A33C75754BC577D8C3 /* Pods-SignalShareExtension.testable release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SignalShareExtension.testable release.xcconfig"; path = "Target Support Files/Pods-SignalShareExtension/Pods-SignalShareExtension.testable release.xcconfig"; sourceTree = "<group>"; };
 		55B305CB99EC1478F69D91CF /* Pods-SignalUITests.profiling.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SignalUITests.profiling.xcconfig"; path = "Target Support Files/Pods-SignalUITests/Pods-SignalUITests.profiling.xcconfig"; sourceTree = "<group>"; };
 		5AA002E52CA2455F002D1CC2 /* SessionStoreTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStoreTest.swift; sourceTree = "<group>"; };
@@ -9215,6 +9223,17 @@
 			path = Reactions;
 			sourceTree = "<group>";
 		};
+		534D52540000000000000001 /* Smartt */ = {
+			isa = PBXGroup;
+			children = (
+				534D52540000000000000101 /* SmarttCommunicationWindow.swift */,
+				534D52540000000000000201 /* SmarttCommunicationWindowAPI.swift */,
+				534D52540000000000000301 /* SmarttCommunicationWindows.swift */,
+				534D52540000000000000401 /* SmarttCommunicationWindowStore.swift */,
+			);
+			path = Smartt;
+			sourceTree = "<group>";
+		};
 		6600BB1B2BA3ABCC0005A035 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -13545,6 +13564,7 @@
 				F9B0DC3B28948656004E07B7 /* Resources */,
 				6673FF6A2978B5B900F96CFD /* SecureValueRecovery */,
 				F9C5CB98289453B200548EEE /* Security */,
+				534D52540000000000000001 /* Smartt */,
 				F9C5CA2F289453B100548EEE /* Storage */,
 				88E34F2522F269B600966CC2 /* StorageService */,
 				7255A4C52B98DA2200E95368 /* Stories */,
@@ -18481,6 +18501,10 @@
 				C1CD0E3A2A6B0D2700307F1A /* SignalSessionStore.swift in Sources */,
 				72B0C2422C9EED0E00B57DAD /* SignedPreKeyRecord.swift in Sources */,
 				F9C5CD33289453B300548EEE /* SignedPreKeyStoreImpl.swift in Sources */,
+				534D52540000000000000102 /* SmarttCommunicationWindow.swift in Sources */,
+				534D52540000000000000202 /* SmarttCommunicationWindowAPI.swift in Sources */,
+				534D52540000000000000302 /* SmarttCommunicationWindows.swift in Sources */,
+				534D52540000000000000402 /* SmarttCommunicationWindowStore.swift in Sources */,
 				F9C5CC51289453B300548EEE /* SMKError.swift in Sources */,
 				F9C5CC53289453B300548EEE /* SMKSecretSessionCipher.swift in Sources */,
 				F9C5CC50289453B300548EEE /* SMKUDAccessKey.swift in Sources */,

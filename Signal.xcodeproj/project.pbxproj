@@ -747,6 +747,8 @@
 		534D52540000000000000302 /* SmarttCommunicationWindows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534D52540000000000000301 /* SmarttCommunicationWindows.swift */; };
 		534D52540000000000000402 /* SmarttCommunicationWindowStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534D52540000000000000401 /* SmarttCommunicationWindowStore.swift */; };
 		534D52540000000000000502 /* SmarttHeldMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534D52540000000000000501 /* SmarttHeldMessages.swift */; };
+		534D52540000000000000602 /* SmarttWindowBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534D52540000000000000601 /* SmarttWindowBanner.swift */; };
+		534D52540000000000000702 /* Smartt.strings in Resources */ = {isa = PBXBuildFile; fileRef = 534D52540000000000000003 /* Smartt.strings */; };
 		5AA002E62CA24566002D1CC2 /* SessionStoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA002E52CA2455F002D1CC2 /* SessionStoreTest.swift */; };
 		616577F953D77424E32C7438 /* Pods_SignalUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 675486AB8F0612FF2C717BAE /* Pods_SignalUI.framework */; };
 		6600BB182BA3A04C0005A035 /* LinkPreviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6600BB172BA3A04C0005A035 /* LinkPreviewManager.swift */; };
@@ -4687,6 +4689,8 @@
 		534D52540000000000000301 /* SmarttCommunicationWindows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarttCommunicationWindows.swift; sourceTree = "<group>"; };
 		534D52540000000000000401 /* SmarttCommunicationWindowStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarttCommunicationWindowStore.swift; sourceTree = "<group>"; };
 		534D52540000000000000501 /* SmarttHeldMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarttHeldMessages.swift; sourceTree = "<group>"; };
+		534D52540000000000000601 /* SmarttWindowBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarttWindowBanner.swift; sourceTree = "<group>"; };
+		534D52540000000000000701 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = translations/en.lproj/Smartt.strings; sourceTree = "<group>"; };
 		538291A33C75754BC577D8C3 /* Pods-SignalShareExtension.testable release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SignalShareExtension.testable release.xcconfig"; path = "Target Support Files/Pods-SignalShareExtension/Pods-SignalShareExtension.testable release.xcconfig"; sourceTree = "<group>"; };
 		55B305CB99EC1478F69D91CF /* Pods-SignalUITests.profiling.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SignalUITests.profiling.xcconfig"; path = "Target Support Files/Pods-SignalUITests/Pods-SignalUITests.profiling.xcconfig"; sourceTree = "<group>"; };
 		5AA002E52CA2455F002D1CC2 /* SessionStoreTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStoreTest.swift; sourceTree = "<group>"; };
@@ -9237,6 +9241,14 @@
 			path = Smartt;
 			sourceTree = "<group>";
 		};
+		534D52540000000000000002 /* Smartt */ = {
+			isa = PBXGroup;
+			children = (
+				534D52540000000000000601 /* SmarttWindowBanner.swift */,
+			);
+			path = Smartt;
+			sourceTree = "<group>";
+		};
 		6600BB1B2BA3ABCC0005A035 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -11110,6 +11122,7 @@
 				A5E7C673248C5442007C949A /* InfoPlist.strings */,
 				B6F509951AA53F760068F56A /* Localizable.strings */,
 				1466AB262817F7E7003B3D9F /* PluralAware.stringsdict */,
+				534D52540000000000000003 /* Smartt.strings */,
 			);
 			name = Translations;
 			sourceTree = "<group>";
@@ -11399,6 +11412,7 @@
 				D9DCFDAC2A3BB22800C73C0B /* QRCodes */,
 				6600F38C29918A5100B1EDB7 /* Registration */,
 				50BF51062BB201AE00C2C309 /* Sharing */,
+				534D52540000000000000002 /* Smartt */,
 				34074F54203D0722004596AE /* Sounds */,
 				76EB03C118170B33006006FC /* src */,
 				50A76F572AF5762C00FCF02D /* Storage */,
@@ -15193,6 +15207,7 @@
 				34CF0788203E6B78005C4D61 /* ringback_tone_ansi.caf in Resources */,
 				882F8DE6251AB23600AA4359 /* Settings.bundle in Resources */,
 				886CB07824E77E5B00753909 /* silence.aiff in Resources */,
+				534D52540000000000000702 /* Smartt.strings in Resources */,
 				34C3C78F2040A4F70000134C /* sonarping.mp3 in Resources */,
 				88928A44263A2781009C9B30 /* state-change_confirm-down.caf in Resources */,
 				88928A45263A2781009C9B30 /* state-change_confirm-up.caf in Resources */,
@@ -17391,6 +17406,7 @@
 				8822558D26B9D1D7001A33C4 /* SignalDotMePhoneNumberLink.swift in Sources */,
 				D9E43C0F2CC194140001536E /* SimulatorCallUIAdaptee.swift in Sources */,
 				6640132A2BFEB9C700F10FC4 /* SingleOrDoubleTapGestureRecognizer.swift in Sources */,
+				534D52540000000000000602 /* SmarttWindowBanner.swift in Sources */,
 				D968B4982C9E1AD1006B14E1 /* SmsLockIconView.swift in Sources */,
 				88BE44A626153E7B00AE8E33 /* SoundAndNotificationsSettingsViewController.swift in Sources */,
 				F94D12FF28BD0DD900B2C478 /* SpeechManager.swift in Sources */,
@@ -19152,6 +19168,14 @@
 				4535186D1FC635DD00210559 /* Base */,
 			);
 			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+		534D52540000000000000003 /* Smartt.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				534D52540000000000000701 /* en */,
+			);
+			name = Smartt.strings;
 			sourceTree = "<group>";
 		};
 		A5E7C673248C5442007C949A /* InfoPlist.strings */ = {

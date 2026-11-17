@@ -1,0 +1,41 @@
+/* Check frequency in the window banner's details. */
+"SMARTT_WINDOW_BANNER_CHECK_EVERY_FEW_HOURS" = "every few hours";
+
+/* Check frequency in the window banner's details. */
+"SMARTT_WINDOW_BANNER_CHECK_EVERY_FEW_MINUTES" = "every few minutes";
+
+/* How often the recipient checks messages, in the window banner's details. Embeds {{a frequency, e.g. 'once an hour'}}. */
+"SMARTT_WINDOW_BANNER_CHECK_FREQUENCY_FORMAT" = "Usual check frequency: %@";
+
+/* Check frequency in the window banner's details. */
+"SMARTT_WINDOW_BANNER_CHECK_ONCE_AN_HOUR" = "once an hour";
+
+/* Check frequency in the window banner's details. */
+"SMARTT_WINDOW_BANNER_CHECK_ONCE_A_DAY" = "once a day";
+
+/* The recipient's personal note, in the window banner's details. Embeds {{the note}}. */
+"SMARTT_WINDOW_BANNER_NOTE_FORMAT" = "“%@”";
+
+/* Usual reply time in the window banner's details. */
+"SMARTT_WINDOW_BANNER_REPLY_IN_THE_AFTERNOON" = "in the afternoon";
+
+/* Usual reply time in the window banner's details. */
+"SMARTT_WINDOW_BANNER_REPLY_IN_THE_EVENING" = "in the evening";
+
+/* Usual reply time in the window banner's details. */
+"SMARTT_WINDOW_BANNER_REPLY_NEXT_BUSINESS_DAY" = "next business day";
+
+/* Usual reply time in the window banner's details. */
+"SMARTT_WINDOW_BANNER_REPLY_NEXT_DAY" = "next day";
+
+/* When the recipient usually replies, in the window banner's details. Embeds {{a time, e.g. 'in the afternoon'}}. */
+"SMARTT_WINDOW_BANNER_REPLY_TIME_FORMAT" = "Usual reply time: %@";
+
+/* Usual reply time in the window banner's details. */
+"SMARTT_WINDOW_BANNER_REPLY_WITHIN_AN_HOUR" = "within an hour";
+
+/* Usual reply time in the window banner's details. */
+"SMARTT_WINDOW_BANNER_REPLY_WITHIN_MINUTES" = "within minutes";
+
+/* Banner in a one-to-one chat while the recipient's communication window is closed. Embeds {{contact name}}, {{start time}} and {{end time}}. */
+"SMARTT_WINDOW_BANNER_TITLE" = "%1$@’s communication window is closed from %2$@ to %3$@";

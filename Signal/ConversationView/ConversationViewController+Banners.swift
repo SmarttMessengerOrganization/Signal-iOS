@@ -618,6 +618,12 @@ extension ConversationViewController {
             banners.append(banner)
         }
 
+        // [Smartt: comm-window] While the recipient's communication window is closed.
+        if let banner = SmarttWindowBanner.banner(for: thread, refresh: { [weak self] in self?.ensureBannerState() }) {
+            banners.append(banner)
+        }
+        // [/Smartt]
+
         if banners.isEmpty {
             if hasViewDidAppearEverBegun {
                 updateContentInsets()

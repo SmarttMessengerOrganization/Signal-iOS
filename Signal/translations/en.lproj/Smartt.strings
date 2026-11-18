@@ -19,6 +19,18 @@
 /* Title of the list of the user's communication windows, and label of the chat list button that opens it. */
 "SMARTT_WINDOWS_TITLE" = "Communication windows";
 
+/* Row that adds exception contacts to a communication window. */
+"SMARTT_WINDOW_ADD_PEOPLE" = "Add people";
+
+/* Header of the communication window's call settings. */
+"SMARTT_WINDOW_ALLOWED_CALLS" = "Allowed calls";
+
+/* Header of the contacts whose messages go through while the window is closed. */
+"SMARTT_WINDOW_ALLOWED_MESSAGES" = "Allowed messages";
+
+/* Explains the communication window's exception contacts. */
+"SMARTT_WINDOW_ALLOWED_MESSAGES_DESCRIPTION" = "Choose who can reach you while your communication window is closed.";
+
 /* Check frequency in the window banner's details. */
 "SMARTT_WINDOW_BANNER_CHECK_EVERY_FEW_HOURS" = "every few hours";
 
@@ -60,3 +72,111 @@
 
 /* Banner in a one-to-one chat while the recipient's communication window is closed. Embeds {{contact name}}, {{start time}} and {{end time}}. */
 "SMARTT_WINDOW_BANNER_TITLE" = "%1$@’s communication window is closed from %2$@ to %3$@";
+
+/* Switch that allows calls from everyone while the window is closed. */
+"SMARTT_WINDOW_CALLS_FROM_ALL" = "From all contacts";
+
+/* Switch that allows calls from exception contacts while the window is closed. */
+"SMARTT_WINDOW_CALLS_FROM_EXCEPTIONS" = "From exception contacts";
+
+/* How often the user checks messages. */
+"SMARTT_WINDOW_CHECK_EVERY_FEW_HOURS" = "Every few hours";
+
+/* How often the user checks messages. */
+"SMARTT_WINDOW_CHECK_EVERY_FEW_MINUTES" = "Every few minutes";
+
+/* Row that picks how often the user checks messages. */
+"SMARTT_WINDOW_CHECK_FREQUENCY" = "Check frequency";
+
+/* How often the user checks messages. */
+"SMARTT_WINDOW_CHECK_ONCE_AN_HOUR" = "Once an hour";
+
+/* How often the user checks messages. */
+"SMARTT_WINDOW_CHECK_ONCE_A_DAY" = "Once a day";
+
+/* Button that saves a new communication window. */
+"SMARTT_WINDOW_CREATE" = "Create";
+
+/* Error when saving a communication window without days. */
+"SMARTT_WINDOW_DAYS_REQUIRED" = "Select at least one day";
+
+/* Row that picks the communication window's emoji. */
+"SMARTT_WINDOW_EMOJI" = "Emoji";
+
+/* When the communication window's closed period ends. */
+"SMARTT_WINDOW_END" = "End";
+
+/* Title of the picker that adds exception contacts. */
+"SMARTT_WINDOW_EXCEPTION_CONTACTS" = "Exception contacts";
+
+/* Header of what senders are told while the window is closed. */
+"SMARTT_WINDOW_EXPECTATIONS" = "Set expectations";
+
+/* Explains the communication window's expectations. */
+"SMARTT_WINDOW_EXPECTATIONS_DESCRIPTION" = "Let your contacts know when you usually check and reply to messages.";
+
+/* Placeholder of the communication window's name field. */
+"SMARTT_WINDOW_NAME_PLACEHOLDER" = "Window name";
+
+/* Error when saving a communication window without a name. */
+"SMARTT_WINDOW_NAME_REQUIRED" = "Please enter a name";
+
+/* No value chosen for an optional communication window setting. */
+"SMARTT_WINDOW_NONE" = "None";
+
+/* Action that opens the full emoji picker. */
+"SMARTT_WINDOW_OTHER_EMOJI" = "Other emoji";
+
+/* Placeholder of the field for a note senders see while the window is closed. */
+"SMARTT_WINDOW_PERSONAL_NOTE" = "Personal note";
+
+/* Preset name for a communication window. */
+"SMARTT_WINDOW_PRESET_FAMILY" = "Family";
+
+/* Preset name for a communication window. */
+"SMARTT_WINDOW_PRESET_HOLIDAYS" = "Holidays";
+
+/* Preset name for a communication window. */
+"SMARTT_WINDOW_PRESET_SLEEP" = "Sleep";
+
+/* Preset name for a communication window. */
+"SMARTT_WINDOW_PRESET_STUDY" = "Study";
+
+/* Preset name for a communication window. */
+"SMARTT_WINDOW_PRESET_WEEKEND" = "Weekend";
+
+/* Preset name for a communication window. */
+"SMARTT_WINDOW_PRESET_WORK" = "Work";
+
+/* Action that removes a contact from the communication window's exceptions. */
+"SMARTT_WINDOW_REMOVE" = "Remove";
+
+/* When the user usually replies. */
+"SMARTT_WINDOW_REPLY_IN_THE_AFTERNOON" = "In the afternoon";
+
+/* When the user usually replies. */
+"SMARTT_WINDOW_REPLY_IN_THE_EVENING" = "In the evening";
+
+/* When the user usually replies. */
+"SMARTT_WINDOW_REPLY_NEXT_BUSINESS_DAY" = "Next business day";
+
+/* When the user usually replies. */
+"SMARTT_WINDOW_REPLY_NEXT_DAY" = "Next day";
+
+/* Row that picks when the user usually replies. */
+"SMARTT_WINDOW_REPLY_TIME" = "Usual reply time";
+
+/* When the user usually replies. */
+"SMARTT_WINDOW_REPLY_WITHIN_AN_HOUR" = "Within an hour";
+
+/* When the user usually replies. */
+"SMARTT_WINDOW_REPLY_WITHIN_MINUTES" = "Within minutes";
+
+/* Header of the communication window's closed period. */
+"SMARTT_WINDOW_SCHEDULE" = "Schedule";
+
+/* Explains the communication window's closed period. */
+"SMARTT_WINDOW_SCHEDULE_DESCRIPTION" = "Choose when to close your communication window. Incoming messages will be delivered once it’s open again.";
+
+/* When the communication window's closed period starts. */
+"SMARTT_WINDOW_START" = "Start";

@@ -59,7 +59,9 @@ final class SmarttWindowsViewController: OWSTableViewController2 {
             "SMARTT_WINDOWS_NEW",
             tableName: "Smartt",
             comment: "Row at the end of the communication windows list that starts creating a new window."
-        )))
+        ), actionBlock: { [weak self] in
+            self?.navigationController?.pushViewController(SmarttWindowEditorViewController(), animated: true)
+        }))
         let contents = OWSTableContents()
         contents.add(section)
         self.contents = contents

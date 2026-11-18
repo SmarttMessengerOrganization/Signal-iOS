@@ -2,6 +2,8 @@
 
 set -eux
 
+exec ./smartt_ci_post_clone.sh # [Smartt: xcode-cloud] Smartt's setup runs instead of the steps below
+
 ./send_build_notification.py started || :
 
 cd ..

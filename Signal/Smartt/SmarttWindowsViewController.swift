@@ -52,7 +52,10 @@ final class SmarttWindowsViewController: OWSTableViewController2 {
             section.add(.item(
                 name: window.emoji.isEmpty ? window.name : "\(window.emoji) \(window.name)",
                 subtitle: summary(for: window, isSynced: !pendingIds.contains(window.windowId)),
-                accessoryType: .disclosureIndicator
+                accessoryType: .disclosureIndicator,
+                actionBlock: { [weak self] in
+                    self?.navigationController?.pushViewController(SmarttWindowEditorViewController.editing(window), animated: true)
+                }
             ))
         }
         section.add(.actionItem(withText: OWSLocalizedString(

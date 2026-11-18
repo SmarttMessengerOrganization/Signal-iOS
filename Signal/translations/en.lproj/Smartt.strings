@@ -100,6 +100,15 @@
 /* Error when saving a communication window without days. */
 "SMARTT_WINDOW_DAYS_REQUIRED" = "Select at least one day";
 
+/* Row that deletes a communication window. */
+"SMARTT_WINDOW_DELETE" = "Delete communication window";
+
+/* Message of the confirmation before deleting a communication window. */
+"SMARTT_WINDOW_DELETE_CONFIRM_MESSAGE" = "This action cannot be undone.";
+
+/* Title of the confirmation before deleting a communication window. */
+"SMARTT_WINDOW_DELETE_CONFIRM_TITLE" = "Delete communication window?";
+
 /* Row that picks the communication window's emoji. */
 "SMARTT_WINDOW_EMOJI" = "Emoji";
 

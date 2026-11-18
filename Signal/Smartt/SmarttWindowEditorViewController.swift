@@ -2,19 +2,36 @@ import LibSignalClient
 import SignalServiceKit
 import SignalUI
 
-/// Creates a communication window. One form in Signal's settings style takes the place of Android's
-/// wizard: name and emoji, the closed period, allowed contacts and calls, and expectations. As on
-/// Android, a window has one schedule.
+/// Creates and edits communication windows. One form in Signal's settings style takes the place of
+/// Android's wizard and details screen: name and emoji, the closed period, allowed contacts and calls,
+/// and expectations; for an existing window also on/off and delete. As on Android, a window has one
+/// schedule.
 final class SmarttWindowEditorViewController: OWSTableViewController2 {
     private var draft = SmarttCommunicationWindow(schedules: [SmarttCommunicationWindowSchedule()])
+    private var isNew = true
     private let nameField = UITextField()
     private let noteField = UITextField()
 
+    /// The form for an existing window.
+    static func editing(_ window: SmarttCommunicationWindow) -> SmarttWindowEditorViewController {
+        let editor = SmarttWindowEditorViewController()
+        editor.isNew = false
+        editor.draft = window
+        if editor.draft.schedules.isEmpty {
+            editor.draft.schedules = [SmarttCommunicationWindowSchedule()]
+        }
+        editor.nameField.text = window.name
+        editor.noteField.text = window.expectations.personalNote
+        return editor
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = smarttString("SMARTT_WINDOWS_NEW", "Row at the end of the communication windows list that starts creating a new window.")
+        title = isNew
+            ? smarttString("SMARTT_WINDOWS_NEW", "Row at the end of the communication windows list that starts creating a new window.")
+            : draft.name
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: smarttString("SMARTT_WINDOW_CREATE", "Button that saves a new communication window."),
+            title: isNew ? smarttString("SMARTT_WINDOW_CREATE", "Button that saves a new communication window.") : CommonStrings.saveButton,
             primaryAction: UIAction { [weak self] _ in self?.save() }
         )
         nameField.placeholder = smarttString("SMARTT_WINDOW_NAME_PLACEHOLDER", "Placeholder of the communication window's name field.")
@@ -26,15 +43,41 @@ final class SmarttWindowEditorViewController: OWSTableViewController2 {
 
     private func updateTableContents() {
         let contents = OWSTableContents()
+        if !isNew {
+            contents.add(enabledSection())
+        }
         contents.add(nameSection())
         contents.add(scheduleSection())
         contents.add(allowedMessagesSection())
         contents.add(allowedCallsSection())
         contents.add(expectationsSection())
+        if !isNew {
+            contents.add(deleteSection())
+        }
         self.contents = contents
     }
 
     // MARK: - Sections
+
+    private func enabledSection() -> OWSTableSection {
+        let section = OWSTableSection()
+        section.add(.switch(
+            withText: smarttString("SMARTT_WINDOWS_ON", "A communication window is switched on."),
+            isOn: { [weak self] in self?.draft.enabled ?? true },
+            actionBlock: { [weak self] uiSwitch in self?.draft.enabled = uiSwitch.isOn }
+        ))
+        return section
+    }
+
+    private func deleteSection() -> OWSTableSection {
+        let section = OWSTableSection()
+        section.add(.actionItem(
+            withText: smarttString("SMARTT_WINDOW_DELETE", "Row that deletes a communication window."),
+            textColor: .ows_accentRed,
+            actionBlock: { [weak self] in self?.confirmDelete() }
+        ))
+        return section
+    }
 
     private func nameSection() -> OWSTableSection {
         let section = OWSTableSection()
@@ -214,6 +257,23 @@ final class SmarttWindowEditorViewController: OWSTableViewController2 {
         ) { [weak self] _ in
             self?.draft.exceptionContacts.remove(aci)
             self?.updateTableContents()
+        })
+        sheet.addAction(OWSActionSheets.cancelAction)
+        presentActionSheet(sheet)
+    }
+
+    private func confirmDelete() {
+        let sheet = ActionSheetController(
+            title: smarttString("SMARTT_WINDOW_DELETE_CONFIRM_TITLE", "Title of the confirmation before deleting a communication window."),
+            message: smarttString("SMARTT_WINDOW_DELETE_CONFIRM_MESSAGE", "Message of the confirmation before deleting a communication window.")
+        )
+        sheet.addAction(ActionSheetAction(title: CommonStrings.deleteButton, style: .destructive) { [weak self] _ in
+            guard let self else { return }
+            let windowId = self.draft.windowId
+            Task { [weak self] in
+                await SmarttCommunicationWindows.shared.delete(windowId: windowId)
+                self?.navigationController?.popViewController(animated: true)
+            }
         })
         sheet.addAction(OWSActionSheets.cancelAction)
         presentActionSheet(sheet)

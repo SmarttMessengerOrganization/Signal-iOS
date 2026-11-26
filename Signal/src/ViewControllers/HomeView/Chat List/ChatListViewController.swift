@@ -617,6 +617,7 @@ public class ChatListViewController: OWSViewController, HomeTabViewController {
         if let proxyButton = viewState.proxyButtonCreator.buildButton() {
             rightBarButtonItems.append(proxyButton)
         }
+        SmarttWindowClosedCloud.shared.appendItem(to: &rightBarButtonItems) { [weak self] in self?.updateBarButtonItems() } // [Smartt: comm-window]
 
         navigationItem.rightBarButtonItems = rightBarButtonItems
     }

@@ -19,6 +19,11 @@ public struct SmarttCommunicationWindowStore {
 
     private let kvStore = KeyValueStore(collection: "SmarttCommunicationWindows")
 
+    /// IDs of windows deleted on the device whose delete the server hasn't confirmed yet: collection
+    /// `SmarttPendingWindowDeletes`, one entry per window ID. Every sync retries them, and a pull
+    /// doesn't bring them back.
+    private let pendingDeletesStore = KeyValueStore(collection: "SmarttPendingWindowDeletes")
+
     public init() {}
 
     public func windows(tx: DBReadTransaction) -> [SmarttCommunicationWindow] {
@@ -48,9 +53,36 @@ public struct SmarttCommunicationWindowStore {
         save(record, tx: tx)
     }
 
-    func delete(windowId: String, tx: DBWriteTransaction) {
+    /// Removes a window the user deleted and remembers the delete until the server confirms it.
+    func deleteAndRememberDelete(windowId: String, tx: DBWriteTransaction) {
+        kvStore.removeValue(forKey: windowId, transaction: tx)
+        pendingDeletesStore.setBool(true, key: windowId, transaction: tx)
+        notifyChange(tx: tx)
+    }
+
+    /// Removes a window the server no longer has, unless it has changes not pushed yet.
+    func deleteIfNotPending(windowId: String, tx: DBWriteTransaction) {
+        guard let record = loadRecord(windowId: windowId, tx: tx), !record.needsSync else {
+            return
+        }
         kvStore.removeValue(forKey: windowId, transaction: tx)
         notifyChange(tx: tx)
+    }
+
+    /// Writes the server's copy of a window, unless it has changes not pushed yet.
+    func upsertFromServerIfNotPending(_ window: SmarttCommunicationWindow, tx: DBWriteTransaction) {
+        if let record = loadRecord(windowId: window.windowId, tx: tx), record.needsSync {
+            return
+        }
+        upsert(window, needsSync: false, tx: tx)
+    }
+
+    func pendingDeletes(tx: DBReadTransaction) -> Set<String> {
+        return Set(pendingDeletesStore.allKeys(transaction: tx))
+    }
+
+    func clearPendingDelete(windowId: String, tx: DBWriteTransaction) {
+        pendingDeletesStore.removeValue(forKey: windowId, transaction: tx)
     }
 
     private func save(_ record: Record, tx: DBWriteTransaction) {

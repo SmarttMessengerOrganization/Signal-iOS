@@ -29,22 +29,18 @@ public final class SmarttCommunicationWindows {
         Task { await self.push(window) }
     }
 
-    /// Deletes a window on the device, then on the server in the background. As on Android, a
-    /// failed server delete isn't retried.
+    /// Deletes a window on the device, remembers the delete, and deletes it on the server in the
+    /// background. If the server delete fails, every later sync retries it until the server
+    /// confirms it, so the server stops holding messages for the window.
     public func delete(windowId: String) async {
-        await db.awaitableWrite { tx in store.delete(windowId: windowId, tx: tx) }
-        Task {
-            do {
-                try await self.api.deleteWindow(windowId: windowId)
-            } catch {
-                Logger.warn("Couldn't delete window \(windowId) on the server; not retried: \(error)")
-            }
-        }
+        await db.awaitableWrite { tx in store.deleteAndRememberDelete(windowId: windowId, tx: tx) }
+        Task { await self.pushDelete(windowId: windowId) }
     }
 
-    /// Pushes local changes, then pulls the server's windows; in that order, so a pull can't
-    /// overwrite an edit still waiting to be pushed. On a fresh install there is nothing to push,
-    /// so this is what brings the windows back. Does nothing until the account is registered.
+    /// Pushes pending deletes, then local changes, then pulls the server's windows; in that order,
+    /// so a pull can't overwrite an edit still waiting to be pushed. On a fresh install there is
+    /// nothing to push, so this is what brings the windows back. Does nothing until the account is
+    /// registered.
     public func syncAll() {
         guard isRegistered() else { return }
         Task {
@@ -57,7 +53,7 @@ public final class SmarttCommunicationWindows {
         }
     }
 
-    /// Pushes the windows whose changes haven't reached the server yet.
+    /// Pushes pending deletes, then the windows whose changes haven't reached the server yet.
     public func syncPending() {
         guard isRegistered() else { return }
         Task { await self.pushPending() }
@@ -85,21 +81,42 @@ public final class SmarttCommunicationWindows {
         }
     }
 
+    /// Clears the pending delete once the server has deleted the window, or answered that it had
+    /// none (`deleteWindow` treats the server's 404 as done). Otherwise the next sync retries it.
+    private func pushDelete(windowId: String) async {
+        do {
+            try await api.deleteWindow(windowId: windowId)
+            await db.awaitableWrite { tx in store.clearPendingDelete(windowId: windowId, tx: tx) }
+        } catch {
+            Logger.warn("Couldn't delete window \(windowId) on the server; the next sync retries: \(error)")
+        }
+    }
+
     private func pushPending() async {
+        let pendingDeletes = db.read { tx in store.pendingDeletes(tx: tx) }
+        for windowId in pendingDeletes.sorted() {
+            await pushDelete(windowId: windowId)
+        }
         let pending = db.read { tx in store.windowsNeedingSync(tx: tx) }
         for window in pending {
             await push(window)
         }
     }
 
-    /// Windows with unpushed local changes are left alone. Like Android, windows deleted on another
-    /// device aren't removed here.
+    /// Makes the device mirror the server: windows deleted on another device, or on the server, are
+    /// removed here too. Two exceptions: windows with changes not pushed yet are left alone (a new
+    /// window must survive a pull that runs before its first push), and a window whose delete is
+    /// still pending isn't brought back. Throws, changing nothing, when the server can't be reached.
     private func pull() async throws {
         let remoteWindows = try await api.listWindows()
+        let remoteIds = Set(remoteWindows.map(\.windowId))
         await db.awaitableWrite { tx in
-            let pendingIds = Set(store.windowsNeedingSync(tx: tx).map(\.windowId))
-            for window in remoteWindows where !pendingIds.contains(window.windowId) {
-                store.upsert(window, needsSync: false, tx: tx)
+            let pendingDeletes = store.pendingDeletes(tx: tx)
+            for window in remoteWindows where !pendingDeletes.contains(window.windowId) {
+                store.upsertFromServerIfNotPending(window, tx: tx)
+            }
+            for window in store.windows(tx: tx) where !remoteIds.contains(window.windowId) {
+                store.deleteIfNotPending(windowId: window.windowId, tx: tx)
             }
         }
     }

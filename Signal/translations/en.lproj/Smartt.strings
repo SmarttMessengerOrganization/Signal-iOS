@@ -94,6 +94,9 @@
 /* How often the user checks messages. */
 "SMARTT_WINDOW_CHECK_ONCE_A_DAY" = "Once a day";
 
+/* Accessibility label of the cloud in the chat list's top bar, shown while the user's own communication window is closed. */
+"SMARTT_WINDOW_CLOSED_CLOUD" = "Your communication window is closed";
+
 /* Button that saves a new communication window. */
 "SMARTT_WINDOW_CREATE" = "Create";
 
